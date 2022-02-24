@@ -22,10 +22,12 @@ const AllProducts = (props) => {
         <div>
         {
             productList.map((product, index) => (
-                <div key={index}>
+                <div key={index} class="product">
                     <Link to={`/product/${product._id}`}>
                     {product.title}
                     </Link>
+                    <p><Link to ={`/product/edit/${product._id}`}>Edit |</Link>
+                    <Link to ={`/product/delete/${product._id}`}> Delete</Link></p>
                 </div>
             ))
         }

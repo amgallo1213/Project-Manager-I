@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import {Link} from '@reach/router';
 
 const OneProduct = (props) => {
     const {id} = props;
@@ -16,14 +16,18 @@ const OneProduct = (props) => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }, [id])
 
     return(
         <div>
             <header><h1>{singleProduct.title}</h1></header>
-            <p>Price: {singleProduct.price}</p>
+            <p>Price: &#36;{singleProduct.price}</p>
             <p>Description: {singleProduct.description}</p>
+            <p><Link to="/product/edit/:id">Edit</Link>
+            <Link to="/">Home</Link></p>
         </div>
+
+        
     )
 
 }

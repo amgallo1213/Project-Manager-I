@@ -2,7 +2,8 @@ import React, {useState } from 'react';
 import axios from 'axios';
 
 
-const ProductForm = () => {
+const ProductForm = (props) => {
+    const {products, setProducts} = props;
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -14,6 +15,7 @@ const ProductForm = () => {
         .then(res => {
             console.log(res);
             console.log(res.data);
+            setProducts([...products, res.data]);
         })
         .catch(err => console.log(err))
     }
@@ -24,17 +26,17 @@ const ProductForm = () => {
 
                 <p>
                     <label>Title</label><br/>
-                    <input type="text" onChange= {(e) => setTitle(e.target.value)}/>
+                    <input value={title} type="text" onChange= {(e) => setTitle(e.target.value)}/>
                 </p>
                 <p>
                     <label>Price</label><br/>
-                    <input type="text" onChange= {(e) => setPrice(e.target.value)}/>
+                    <input value={price} type="text" onChange= {(e) => setPrice(e.target.value)}/>
                 </p>
                 <p>
                     <label>Description</label><br/>
-                    <input type="text" onChange= {(e) => setDescription(e.target.value)}/>
+                    <input value={description} type="text" onChange= {(e) => setDescription(e.target.value)}/>
                 </p>
-                <input type="submit"/>
+                <button type="submit">Add Product</button>
             </form>
             <br/>
         </div>
